@@ -13,5 +13,13 @@ public class Node {
         this.city_name=name;
     }
 
+    public Double getX(){
+        return this.x;
+    }
+
+    public Double getY(){
+        return this.y;
+    }
+
 
 }
