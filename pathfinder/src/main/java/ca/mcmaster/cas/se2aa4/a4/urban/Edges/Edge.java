@@ -15,4 +15,5 @@ public class Edge {
         this.node_2=n2;
         this.weight=weight;
     }
+
 }
