@@ -1,7 +1,9 @@
 import ca.mcmaster.cas.se2aa4.a4.urban.BuildingBlocks.Edge;
 import ca.mcmaster.cas.se2aa4.a4.urban.BuildingBlocks.Node;
+import ca.mcmaster.cas.se2aa4.a4.urban.DirectedGraph;
 import ca.mcmaster.cas.se2aa4.a4.urban.GraphADT;
 import ca.mcmaster.cas.se2aa4.a4.urban.ShortestPath.DijkstraSP;
+import ca.mcmaster.cas.se2aa4.a4.urban.UndirectedGraph;
 
 public class Main {
     public static void main(String[] args) {
@@ -9,7 +11,7 @@ public class Main {
 
         //Will be converted to test cases.
         //Will get rid of DW RELAX
-        GraphADT new_graph=new GraphADT();
+        UndirectedGraph new_graph=new UndirectedGraph();
 
         Node A=new Node("A");
         Node n0=new Node("0");
@@ -22,21 +24,6 @@ public class Main {
         Node n7=new Node("6");
         Node n8=new Node("8");
         Node n9=new Node("9");
-
-        new_graph.addNode(A);
-        new_graph.addNode(n0);
-        new_graph.addNode(n1);
-        new_graph.addNode(n2);
-        new_graph.addNode(n3);
-        new_graph.addNode(n4);
-        new_graph.addNode(n5);
-        new_graph.addNode(n6);
-        new_graph.addNode(n7);
-        new_graph.addNode(n8);
-        new_graph.addNode(n9);
-
-
-
 
 
         Edge e1=new Edge(A, n0, 9.0);
@@ -67,8 +54,6 @@ public class Main {
         new_graph.addEdge(e12);
         new_graph.addEdge(e13);
         new_graph.addEdge(e14);
-
-
 
         DijkstraSP shortest=new DijkstraSP();
 

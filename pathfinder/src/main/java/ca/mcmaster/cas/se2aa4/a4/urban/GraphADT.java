@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class GraphADT {
+public abstract class GraphADT {
 
     Set<Edge> edges;
     Set<Node> nodes;
@@ -18,13 +18,8 @@ public class GraphADT {
         this.nodes=new HashSet<>();
     }
 
-    public void addEdge(Edge edge){
-        //Bidirectional edge
-        this.edges.add(edge);
-        this.edges.add(edge.flipEdge());
-        edge.getN1().addEdge(edge);
-        edge.getN2().addEdge(edge.flipEdge());
-    }
+    public abstract void addEdge(Edge edge);
+
 
     public void addNode(Node N){
         if (!nodes.contains(N)) {

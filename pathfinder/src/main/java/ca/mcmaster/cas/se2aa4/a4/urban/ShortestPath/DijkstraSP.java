@@ -8,10 +8,10 @@ import java.util.*;
 
 public class DijkstraSP implements ShortestPath {
 
-    HashMap<Node, Node> path;
+    HashMap<Node, Node> all_sp;
     HashMap<Node, Double> cost;
     PriorityQueue<Node> queue;
-    List<Edge> path_edge;
+    List<Edge> node_sp;
     Node start;
     Node end;
 
@@ -23,8 +23,8 @@ public class DijkstraSP implements ShortestPath {
     };
 
     public DijkstraSP(){
-        this.path=new HashMap<>();
-        this.path_edge=new ArrayList<>();
+        this.all_sp =new HashMap<>();
+        this.node_sp =new ArrayList<>();
         this.cost=new HashMap<>();
         this.queue=new PriorityQueue<>(new_comparator);
     }
@@ -34,13 +34,13 @@ public class DijkstraSP implements ShortestPath {
         this.end=e;
 
         for (Node n: graph.getNodes()){
-            path.put(n, null);
+            all_sp.put(n, null);
         }
         for (Node n: graph.getNodes()){
             cost.put(n, Double.MAX_VALUE);
         }
 
-        path.put(s,s);
+        all_sp.put(s,s);
         cost.put(s,0.0);
         queue.add(s);
 
@@ -50,50 +50,39 @@ public class DijkstraSP implements ShortestPath {
                 Node next=edge.getN2();
                 if (cost.get(temp)+edge.getWeight()<cost.get(next)){
                     cost.put(next, cost.get(temp)+edge.getWeight());
-                    path.put(next,temp);
+                    all_sp.put(next,temp);
                     queue.add(next);
                 }
             }
         }
     }
 
+
     private void findPathEdges(){
 
         Node curr_node=this.end;
         while (curr_node!=this.start & curr_node!=null) {
-            if (path.get(curr_node)!=null){
-                for (Edge e : path.get(curr_node).getEdges()) {
+            if (all_sp.get(curr_node)!=null){
+                for (Edge e : all_sp.get(curr_node).getEdges()) {
                     if (e.getN2() == curr_node) {
-                        this.path_edge.add(0,e);
+                        this.node_sp.add(0,e);
                     }
                 }
             }
-            curr_node = path.get(curr_node);
+            curr_node = all_sp.get(curr_node);
         }
 
-
     }
+
     public List<String> getPath() {
         findPathEdges();
         List<String> temp=new ArrayList<>();
-        for (Edge e: this.path_edge){
+        for (Edge e: this.node_sp){
             temp.add(e.getN1().getName()+e.getN2().getName());
         }
 
         return temp;
     }
-
-//    public List<String> getPath() {
-//        List<String> temp=new ArrayList<>();
-//        Node curr_node=this.end;
-//        while (curr_node!=this.start & curr_node!=null){
-//            temp.add(0,curr_node.getName());
-//            curr_node=path.get(curr_node);
-//        }
-//        temp.add(0,start.getName());
-//
-//        return temp;
-//    }
 
     public Double getCost(){
         return cost.get(end);
