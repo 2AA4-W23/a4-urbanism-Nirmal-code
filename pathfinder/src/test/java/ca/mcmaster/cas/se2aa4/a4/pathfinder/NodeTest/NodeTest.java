@@ -15,13 +15,13 @@ public class NodeTest {
 
     @BeforeAll
     public static void setUp(){
-        N1=new Node("Toronto");
-        N2=new Node("Vancouver");
+        N1=new Node("Toronto",10,4.0);
+        N2=new Node("Vancouver",5,10.0);
     }
 
     @Test
     public void TestNodeName(){
-        assertTrue(N1.getCity_name().equals("Toronto"));
+        assertTrue(N1.getCity_name().equals("Toronto") & N2.getCity_name().equals("Vancouver"));
     }
 
     @Test
@@ -34,6 +34,11 @@ public class NodeTest {
 
         assertTrue(N1.getEdges().size()==2);
 
+    }
+
+    @Test
+    public void TestElevation(){
+        assertTrue(N1.getElevation()<N2.getElevation());
     }
 
 

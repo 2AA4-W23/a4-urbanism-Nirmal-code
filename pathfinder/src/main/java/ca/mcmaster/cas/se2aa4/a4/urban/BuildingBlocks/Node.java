@@ -7,10 +7,17 @@ public class Node{
     private String city_name;
     private Set<Edge> roads;
 
+    private int size;
 
-    public Node(String name){
+    private double elevation;
+
+
+
+    public Node(String name, int size, double elevation){
         this.roads =new HashSet<>();
         this.city_name =name;
+        this.size=size;
+        this.elevation=elevation;
     }
 
     public void addEdge(Edge new_edge){
@@ -23,6 +30,10 @@ public class Node{
 
     public String getCity_name(){
         return this.city_name;
+    }
+
+    public double getElevation(){
+        return this.elevation;
     }
 
 

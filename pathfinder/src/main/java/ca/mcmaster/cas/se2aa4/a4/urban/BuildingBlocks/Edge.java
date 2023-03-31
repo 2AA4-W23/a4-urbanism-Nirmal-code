@@ -9,12 +9,17 @@ public class Edge {
     public Edge(Node n1, Node n2, Double weight){
         this.N1 =n1;
         this.N2 =n2;
-        this.weight=weight;
+        this.weight=accountElevation(weight);
     }
 
     public Edge flipEdge(){
         return new Edge(N2,N1,weight);
     }
+
+    private double accountElevation(Double weight){
+        double new_weight=Math.sqrt(Math.pow(weight,2)+Math.pow(Math.abs(N1.getElevation()-N2.getElevation()),2));
+        return new_weight;
+    };
 
     public Node getN1(){
         return this.N1;
