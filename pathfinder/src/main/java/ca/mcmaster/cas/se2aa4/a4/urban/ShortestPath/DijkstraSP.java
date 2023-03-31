@@ -78,7 +78,7 @@ public class DijkstraSP implements ShortestPath {
         findPathEdges();
         List<String> temp=new ArrayList<>();
         for (Edge e: this.node_sp){
-            temp.add(e.getN1().getName()+e.getN2().getName());
+            temp.add(e.getN1().getCity_name()+e.getN2().getCity_name());
         }
 
         return temp;

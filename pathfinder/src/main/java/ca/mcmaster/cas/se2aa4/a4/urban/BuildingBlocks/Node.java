@@ -1,30 +1,28 @@
 package ca.mcmaster.cas.se2aa4.a4.urban.BuildingBlocks;
 
-import ca.mcmaster.cas.se2aa4.a4.urban.BuildingBlocks.Edge;
-
 import java.util.*;
 
 public class Node{
 
-    private String name;
-    private Set<Edge> edgeList;
+    private String city_name;
+    private Set<Edge> roads;
 
 
     public Node(String name){
-        this.edgeList=new HashSet<>();
-        this.name=name;
+        this.roads =new HashSet<>();
+        this.city_name =name;
     }
 
     public void addEdge(Edge new_edge){
-        this.edgeList.add(new_edge);
+        this.roads.add(new_edge);
     }
 
     public Set<Edge> getEdges(){
-        return this.edgeList;
+        return this.roads;
     }
 
-    public String getName(){
-        return this.name;
+    public String getCity_name(){
+        return this.city_name;
     }
 
 

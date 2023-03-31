@@ -5,12 +5,11 @@ import ca.mcmaster.cas.se2aa4.a4.urban.GraphADT;
 import ca.mcmaster.cas.se2aa4.a4.urban.ShortestPath.DijkstraSP;
 import ca.mcmaster.cas.se2aa4.a4.urban.UndirectedGraph;
 
+
 public class Main {
     public static void main(String[] args) {
 
 
-        //Will be converted to test cases.
-        //Will get rid of DW RELAX
         UndirectedGraph new_graph=new UndirectedGraph();
 
         Node A=new Node("A");
@@ -24,6 +23,7 @@ public class Main {
         Node n7=new Node("6");
         Node n8=new Node("8");
         Node n9=new Node("9");
+
 
 
         Edge e1=new Edge(A, n0, 9.0);
