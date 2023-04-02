@@ -12,7 +12,6 @@ public class Node{
     private double elevation;
 
 
-
     public Node(String name, int size, double elevation){
         this.roads =new HashSet<>();
         this.city_name =name;
@@ -34,6 +33,19 @@ public class Node{
 
     public double getElevation(){
         return this.elevation;
+    }
+
+    //Overide java's implementation of equals.
+    //Ensures that when adding to set, two nodes that are equal won't be added.
+    @Override
+    public boolean equals(Object other)
+    {
+        return this.city_name.equals(((Node)other).city_name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.city_name);
     }
 
 

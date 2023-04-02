@@ -3,10 +3,17 @@ package ca.mcmaster.cas.se2aa4.a4.urban;
 import ca.mcmaster.cas.se2aa4.a4.urban.BuildingBlocks.Edge;
 import ca.mcmaster.cas.se2aa4.a4.urban.BuildingBlocks.Node;
 
+import java.util.Set;
+
 public class DirectedGraph extends GraphADT{
 
+    public DirectedGraph(Set<Node> nodes, Set<Edge> edges){
+        this.nodes=nodes;
+        this.edges=edges;
+
+    }
+
     public void addEdge(Edge edge) {
-        //Directional edge goes in one direction.
         this.edges.add(edge);
         updateNode(edge.getN1(), edge);
     }

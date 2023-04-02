@@ -5,12 +5,12 @@ import ca.mcmaster.cas.se2aa4.a4.urban.GraphADT;
 import ca.mcmaster.cas.se2aa4.a4.urban.ShortestPath.DijkstraSP;
 import ca.mcmaster.cas.se2aa4.a4.urban.UndirectedGraph;
 
+import java.util.Arrays;
+import java.util.HashSet;
+
 
 public class Main {
     public static void main(String[] args) {
-
-
-        UndirectedGraph new_graph=new UndirectedGraph();
 
         Node A=new Node("A",2,4.0);
         Node n0=new Node("0",2,4.0);
@@ -41,19 +41,8 @@ public class Main {
         Edge e14=new Edge(n8, n1, 4.0);
 
 
-        new_graph.addEdge(e1);
-        new_graph.addEdge(e2);
-        new_graph.addEdge(e3);
-        new_graph.addEdge(e4);
-        new_graph.addEdge(e5);
-        new_graph.addEdge(e7);
-        new_graph.addEdge(e8);
-        new_graph.addEdge(e9);
-        new_graph.addEdge(e10);
-        new_graph.addEdge(e11);
-        new_graph.addEdge(e12);
-        new_graph.addEdge(e13);
-        new_graph.addEdge(e14);
+        UndirectedGraph new_graph=new UndirectedGraph(new HashSet<>(Arrays.asList(A,n0,n1,n2,n3,n4,n5,n6,n7,n8,n9)), new HashSet<>(Arrays.asList(e1,e2,e3,e4,e5,e7,e8,e9,e10,e11,e12,e13,e14)));
+
 
         DijkstraSP shortest=new DijkstraSP();
 

@@ -1,5 +1,7 @@
 package ca.mcmaster.cas.se2aa4.a4.urban.BuildingBlocks;
 
+import java.util.Objects;
+
 public class Edge {
 
     private Node N1;
@@ -32,5 +34,17 @@ public class Edge {
     public Double getWeight(){
         return this.weight;
     }
+
+    @Override
+    public boolean equals(Object obj){
+        Edge comparator=(Edge)obj;
+        return comparator.getN1().equals(this.getN1()) & comparator.getN2().equals(this.getN2());
+    }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(this.N1,this.N2);
+    }
+
 
 }
