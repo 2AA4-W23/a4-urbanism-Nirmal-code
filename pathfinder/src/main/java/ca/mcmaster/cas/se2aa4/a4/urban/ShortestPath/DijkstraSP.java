@@ -11,7 +11,7 @@ public class DijkstraSP implements ShortestPath {
     HashMap<Node, Node> all_sp;
     HashMap<Node, Double> cost;
     PriorityQueue<Node> queue;
-    List<Edge> node_sp;
+    List<Node> node_sp;
     Node start;
     Node end;
 
@@ -55,33 +55,48 @@ public class DijkstraSP implements ShortestPath {
                 }
             }
         }
+        this.node_sp=findPathEdges(this.start, this.end, all_sp);
     }
 
 
-    private void findPathEdges(){
+    private List<Node> findPathEdges(Node start, Node end, HashMap<Node,Node> all_path){
 
-        Node curr_node=this.end;
-        while (curr_node!=this.start & curr_node!=null) {
-            if (all_sp.get(curr_node)!=null){
-                for (Edge e : all_sp.get(curr_node).getEdges()) {
+        List<Node> node_path=new ArrayList<>();
+
+        //Since each node references previous node, we must start at the last node.
+        Node curr_node=end;
+        //Will be used to reference the next (previous) node.
+        Node next_node;
+
+        while (curr_node!=start & curr_node!=null) {
+
+
+            //Finds the next node in the path.
+            next_node=all_path.get(curr_node);
+
+            if (next_node!=null){
+                for (Edge e : next_node.getEdges()) {
+
                     if (e.getN2() == curr_node) {
-                        this.node_sp.add(0,e);
+                        node_path.add(0,e.getN2());
                     }
+
                 }
+            }else{
+                node_path.clear();
+                return node_path;
             }
-            curr_node = all_sp.get(curr_node);
+            curr_node = next_node;
         }
+
+        node_path.add(0,this.start);
+
+        return node_path;
 
     }
 
-    public List<String> getPath() {
-        findPathEdges();
-        List<String> temp=new ArrayList<>();
-        for (Edge e: this.node_sp){
-            temp.add(e.getN1().getCity_name()+e.getN2().getCity_name());
-        }
-
-        return temp;
+    public List<Node> getPath() {
+        return this.node_sp;
     }
 
     public Double getCost(){

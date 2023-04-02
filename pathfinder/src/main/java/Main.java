@@ -20,7 +20,7 @@ public class Main {
         Node n4=new Node("4",2,4.0);
         Node n5=new Node("5",3,5.0);
         Node n6=new Node("6",2,4.0);
-        Node n7=new Node("6",2,4.0);
+        Node n7=new Node("7",2,4.0);
         Node n8=new Node("8",2,5.0);
         Node n9=new Node("9",2,4.0);
 
@@ -48,7 +48,10 @@ public class Main {
 
         shortest.generate(new_graph, A,n9);
 
-        System.out.println(shortest.getPath());
+        for (Node e:shortest.getPath()){
+            System.out.println(e.getCity_name());
+        }
+
         System.out.println(shortest.getCost());
 
 

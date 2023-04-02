@@ -9,8 +9,9 @@ public class DirectedGraph extends GraphADT{
 
     public DirectedGraph(Set<Node> nodes, Set<Edge> edges){
         this.nodes=nodes;
-        this.edges=edges;
-
+        for (Edge e: edges){
+            addEdge(e);
+        }
     }
 
     public void addEdge(Edge edge) {
