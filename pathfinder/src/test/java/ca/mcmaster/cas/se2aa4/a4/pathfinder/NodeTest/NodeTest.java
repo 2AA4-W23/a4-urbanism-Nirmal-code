@@ -21,7 +21,7 @@ public class NodeTest {
 
     @Test
     public void TestNodeName(){
-        assertTrue(N1.getCity_name().equals("Toronto") & N2.getCity_name().equals("Vancouver"));
+        assertTrue(N1.getName().equals("Toronto") & N2.getName().equals("Vancouver"));
     }
 
     @Test
@@ -38,7 +38,7 @@ public class NodeTest {
 
     @Test
     public void TestElevation(){
-        assertTrue(N1.getElevation()<N2.getElevation());
+        assertTrue(N1.getWeight()<N2.getWeight());
     }
 
 

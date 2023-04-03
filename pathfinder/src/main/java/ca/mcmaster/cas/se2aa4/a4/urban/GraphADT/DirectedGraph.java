@@ -1,11 +1,12 @@
-package ca.mcmaster.cas.se2aa4.a4.urban;
+package ca.mcmaster.cas.se2aa4.a4.urban.GraphADT;
 
 import ca.mcmaster.cas.se2aa4.a4.urban.BuildingBlocks.Edge;
 import ca.mcmaster.cas.se2aa4.a4.urban.BuildingBlocks.Node;
+import ca.mcmaster.cas.se2aa4.a4.urban.GraphADT.GraphADT;
 
 import java.util.Set;
 
-public class DirectedGraph extends GraphADT{
+public class DirectedGraph extends GraphADT {
 
     public DirectedGraph(Set<Node> nodes, Set<Edge> edges){
         this.nodes=nodes;

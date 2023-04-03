@@ -19,7 +19,7 @@ public class Edge {
     }
 
     private double accountElevation(Double weight){
-        double new_weight=Math.sqrt(Math.pow(weight,2)+Math.pow(Math.abs(N1.getElevation()-N2.getElevation()),2));
+        double new_weight=Math.sqrt(Math.pow(weight,2)+Math.pow(Math.abs(N1.getWeight()-N2.getWeight()),2));
         return new_weight;
     };
 

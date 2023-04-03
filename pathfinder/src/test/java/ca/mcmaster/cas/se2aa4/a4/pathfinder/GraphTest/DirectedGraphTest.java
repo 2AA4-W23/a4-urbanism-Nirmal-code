@@ -2,7 +2,7 @@ package ca.mcmaster.cas.se2aa4.a4.pathfinder.GraphTest;
 
 import ca.mcmaster.cas.se2aa4.a4.urban.BuildingBlocks.Edge;
 import ca.mcmaster.cas.se2aa4.a4.urban.BuildingBlocks.Node;
-import ca.mcmaster.cas.se2aa4.a4.urban.DirectedGraph;
+import ca.mcmaster.cas.se2aa4.a4.urban.GraphADT.DirectedGraph;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 

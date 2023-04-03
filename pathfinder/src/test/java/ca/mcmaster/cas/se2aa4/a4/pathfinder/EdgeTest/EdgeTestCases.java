@@ -21,7 +21,7 @@ public class EdgeTestCases {
 
     @Test
     public void testWeight(){
-        double real_weight=Math.sqrt(Math.pow(5,2)+Math.pow(Math.abs(E.getN1().getElevation()-E.getN2().getElevation()),2));
+        double real_weight=Math.sqrt(Math.pow(5,2)+Math.pow(Math.abs(E.getN1().getWeight()-E.getN2().getWeight()),2));
 
         assertTrue(Double.compare(E.getWeight(),real_weight)==0);
     }

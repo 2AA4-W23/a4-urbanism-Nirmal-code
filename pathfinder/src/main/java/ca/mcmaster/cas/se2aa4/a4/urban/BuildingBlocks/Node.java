@@ -4,35 +4,35 @@ import java.util.*;
 
 public class Node{
 
-    private String city_name;
-    private Set<Edge> roads;
+    private String name;
+    private Set<Edge> connections;
 
     private int size;
 
-    private double elevation;
+    private double weight;
 
 
     public Node(String name, int size, double elevation){
-        this.roads =new HashSet<>();
-        this.city_name =name;
+        this.connections =new HashSet<>();
+        this.name =name;
         this.size=size;
-        this.elevation=elevation;
+        this.weight =elevation;
     }
 
     public void addEdge(Edge new_edge){
-        this.roads.add(new_edge);
+        this.connections.add(new_edge);
     }
 
     public Set<Edge> getEdges(){
-        return this.roads;
+        return this.connections;
     }
 
-    public String getCity_name(){
-        return this.city_name;
+    public String getName(){
+        return this.name;
     }
 
-    public double getElevation(){
-        return this.elevation;
+    public double getWeight(){
+        return this.weight;
     }
 
     //Overide java's implementation of equals.
@@ -40,12 +40,12 @@ public class Node{
     @Override
     public boolean equals(Object other)
     {
-        return this.city_name.equals(((Node)other).city_name);
+        return this.name.equals(((Node)other).name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.city_name);
+        return Objects.hash(this.name);
     }
 
 
