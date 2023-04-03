@@ -7,15 +7,12 @@ public class Node{
     private String name;
     private Set<Edge> connections;
 
-    private int size;
-
     private double weight;
 
 
     public Node(String name, int size, double elevation){
         this.connections =new HashSet<>();
         this.name =name;
-        this.size=size;
         this.weight =elevation;
     }
 
