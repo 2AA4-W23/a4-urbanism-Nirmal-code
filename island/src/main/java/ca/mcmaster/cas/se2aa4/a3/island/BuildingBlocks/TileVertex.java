@@ -87,11 +87,10 @@ public class TileVertex extends ExtractVertexInfo implements TileProperties{
     }
 
     public Vertex getVertex(){
-        if (isRiver){
-            averageColor = new Color(15,94,196, 254);
-        }
-        else{
+        if (isVertexLand() | isVertexWater()){
             setAverageColor();
+        }else{
+            averageColor=vertexElement.getColor();
         }
         
         String colorCode = averageColor.getRed() + "," + averageColor.getGreen() + "," + averageColor.getBlue() + "," + averageColor.getAlpha();
