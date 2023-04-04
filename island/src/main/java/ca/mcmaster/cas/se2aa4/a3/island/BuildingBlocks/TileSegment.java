@@ -3,6 +3,7 @@ package ca.mcmaster.cas.se2aa4.a3.island.BuildingBlocks;
 import ca.mcmaster.cas.se2aa4.a2.io.Structs.Property;
 import ca.mcmaster.cas.se2aa4.a2.io.Structs.Segment;
 import ca.mcmaster.cas.se2aa4.a2.io.Structs.Vertex;
+import ca.mcmaster.cas.se2aa4.a3.island.TilesTypes.SegmentElement;
 import ca.mcmaster.cas.se2aa4.a3.tools.ExtractSegmentInfo;
 
 import java.awt.Color;
@@ -16,14 +17,16 @@ public class TileSegment extends ExtractSegmentInfo implements TileProperties{
     private Double thicknessDouble;
     private TileVertex tileVertex1;
     private TileVertex tileVertex2;
-    private Boolean isRiver;
+
+    private SegmentElement element;
+
     private int numRivers;
 
     public TileSegment(Segment segment, List<Vertex> vertices, int offset){
         super(segment, vertices, offset);
         this.thicknessDouble = super.thickness;
         this.colorList = new ArrayList<>();
-        this.isRiver = false;
+        this.element=SegmentElement.LAND;
         this.numRivers = 0;
         segmentType = extractSegmentType(segment.getPropertiesList());
     }
@@ -41,7 +44,7 @@ public class TileSegment extends ExtractSegmentInfo implements TileProperties{
     }
 
     public void setRiver(){
-        isRiver = true;
+        this.element=SegmentElement.RIVER;
         numRivers++;
         updateThickness();
     }
@@ -81,11 +84,10 @@ public class TileSegment extends ExtractSegmentInfo implements TileProperties{
     }
 
     public Segment getSegment(){
-        if (isRiver){
-            averageColor = new Color(15,94,196, 254);
-        }
-        else{
+        if (element==SegmentElement.LAND){
             setAverageColor();
+        }else{
+            averageColor=element.getColor();
         }
         
         String colourCode = averageColor.getRed() + "," + averageColor.getGreen() + "," + averageColor.getBlue() + "," + averageColor.getAlpha();
