@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import ca.mcmaster.cas.se2aa4.a3.island.Altitude.*;
+import ca.mcmaster.cas.se2aa4.a3.island.Cities.CityMesh;
 import ca.mcmaster.cas.se2aa4.a3.island.Terrains.LandTerrains.BeachGenerator;
 import ca.mcmaster.cas.se2aa4.a3.island.Terrains.LandTerrains.Land;
 import ca.mcmaster.cas.se2aa4.a3.island.Terrains.WaterTerrains.AquiferGenerator;
@@ -102,6 +103,8 @@ public class Regular extends Mode {
 
         //Set humidity contrast colours to all land tiles
         humidity.setHumidityColors(allLand);
+
+        CityMesh city=new CityMesh(allVerticesInfoList,allSegmentInfoList);
     }
 
 }

@@ -15,6 +15,10 @@ public class IslandNode extends GraphElement{
         this.terrain_type=type;
     }
 
+    public Node getNode(){
+        return this.node;
+    }
+
     public VertexElement getTerrain(){
         return this.terrain_type;
     }

@@ -14,6 +14,10 @@ public class VertexObserver extends Observer {
         this.terrain_type=observee.getTerrain();
     }
 
+    public IslandNode getNode(){
+        return this.observee;
+    }
+
     public VertexElement getTerrain(){
         return this.terrain_type;
     }

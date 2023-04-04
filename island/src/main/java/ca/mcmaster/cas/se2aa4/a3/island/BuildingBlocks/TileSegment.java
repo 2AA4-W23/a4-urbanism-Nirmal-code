@@ -78,6 +78,23 @@ public class TileSegment extends ExtractSegmentInfo implements TileProperties{
         return false;
     }
 
+    public TileVertex getTileVertex1(){
+        return this.tileVertex1;
+    }
+
+    public TileVertex getTileVertex2(){
+        return this.tileVertex2;
+    }
+
+    public SegmentElement getElement(){
+        return this.element;
+    }
+
+    public double getLength(){
+        double length=Math.sqrt(Math.pow(tileVertex2.getX()-tileVertex1.getX(),2)+Math.pow(tileVertex2.getY()-tileVertex1.getY(),2));
+        return length;
+    }
+
     public TileVertex getAdjacentVertex(TileVertex vertex){
         //returns the adjacent vertex of the segment for the inputted vertex
         if (tileVertex1.equals(vertex))

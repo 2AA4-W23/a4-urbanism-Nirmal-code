@@ -46,6 +46,10 @@ public class TileVertex extends ExtractVertexInfo implements TileProperties{
         this.observer=observer;
     }
 
+    public VertexObserver getObserver(){
+        return this.observer;
+    }
+
 
     public void setElevation(Double elevation){
         this.elevation=elevation;
@@ -61,6 +65,10 @@ public class TileVertex extends ExtractVertexInfo implements TileProperties{
 
     public Double getElevation(){
         return this.elevation;
+    }
+
+    public VertexElement getVertexElement(){
+        return this.vertexElement;
     }
 
     public void setThickness(Double new_thickness){

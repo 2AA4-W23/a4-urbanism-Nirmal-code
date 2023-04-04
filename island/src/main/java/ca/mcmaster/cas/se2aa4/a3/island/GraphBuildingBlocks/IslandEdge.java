@@ -12,13 +12,17 @@ public class IslandEdge extends GraphElement{
     Edge edge;
     SegmentElement terrain_type;
 
-    public IslandEdge(Node n1, Node n2, double weight, SegmentElement element){
-        edge=new Edge(n1,n2,weight);
+    public IslandEdge(IslandNode n1, IslandNode n2, double weight, SegmentElement element){
+        edge=new Edge(n1.getNode(),n2.getNode(),weight);
         this.terrain_type=element;
     }
 
     public SegmentElement getTerrain(){
         return this.terrain_type;
+    }
+
+    public Edge getEdge(){
+        return this.edge;
     }
 
     @Override
