@@ -15,8 +15,8 @@ public class NodeTest {
 
     @BeforeAll
     public static void setUp(){
-        N1=new Node("Toronto",10,4.0);
-        N2=new Node("Vancouver",5,10.0);
+        N1=new Node("Toronto",4.0);
+        N2=new Node("Vancouver",10.0);
     }
 
     @Test

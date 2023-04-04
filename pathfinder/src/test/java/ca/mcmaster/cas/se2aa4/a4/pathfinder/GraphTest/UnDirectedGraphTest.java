@@ -17,10 +17,10 @@ public class UnDirectedGraphTest {
     @BeforeAll
     public static void setUp(){
 
-        Node A=new Node("A",2,4.0);
-        Node n0=new Node("0",2,4.0);
-        Node n2=new Node("2",2,4.0);
-        Node n7=new Node("6",2,4.0);
+        Node A=new Node("A",4.0);
+        Node n0=new Node("0",4.0);
+        Node n2=new Node("2",4.0);
+        Node n7=new Node("6",4.0);
 
         Edge e1=new Edge(A, n0, 9.0);
         Edge e3=new Edge(A, n2, 5.0);
@@ -33,8 +33,8 @@ public class UnDirectedGraphTest {
 
     @Test
     public void updateNodeTest(){
-        Node n3=new Node("3", 2, 4.0);
-        Node n4=new Node("4",2,4.0);
+        Node n3=new Node("3", 4.0);
+        Node n4=new Node("4",4.0);
 
         graph.addEdge(new Edge(n3,n4,5.0));
 
@@ -52,7 +52,7 @@ public class UnDirectedGraphTest {
 
     @Test
     public void addNodeTest(){
-        Node n3=new Node("3", 2, 4.0);
+        Node n3=new Node("3",  4.0);
 
         graph.addNode(n3);
 
@@ -64,7 +64,7 @@ public class UnDirectedGraphTest {
 
     @Test
     public void duplicateNode(){
-        Node B=new Node("A", 2, 4.0);
+        Node B=new Node("A",  4.0);
 
         graph.addNode(B);
 
@@ -76,8 +76,8 @@ public class UnDirectedGraphTest {
 
     @Test
     public void duplicateFlippedEdge(){
-        Node B=new Node("A",2,4.0);
-        Node C=new Node("0",2,4.0);
+        Node B=new Node("A",4.0);
+        Node C=new Node("0",4.0);
         //Since we previously added (A,0) to the edges, adding (0,A) should do nothing since (0,A) would automatically already be in the set.
         Edge e=new Edge(C, B, 9.0);
 

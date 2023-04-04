@@ -13,8 +13,8 @@ public class EdgeTestCases {
 
     @BeforeAll
     public static void setUp(){
-        Node N1=new Node("Toronto",10,4.0);
-        Node N2=new Node("Vancouver",5,10.0);
+        Node N1=new Node("Toronto",4.0);
+        Node N2=new Node("Vancouver",10.0);
 
         E=new Edge(N1,N2,5.0);
     }

@@ -22,17 +22,17 @@ public class DijkstraPathTest {
 
     @BeforeAll
     public static void setUp(){
-        Node A=new Node("A",2,4.0);
-        Node n0=new Node("0",2,4.0);
-        Node n1=new Node("1",2,4.0);
-        Node n2=new Node("2",2,4.0);
-        Node n3=new Node("3",2,4.0);
-        Node n4=new Node("4",2,4.0);
-        Node n5=new Node("5",3,5.0);
-        Node n6=new Node("6",2,4.0);
-        Node n7=new Node("6",2,4.0);
-        Node n8=new Node("8",2,5.0);
-        Node n9=new Node("9",2,4.0);
+        Node A=new Node("A",4.0);
+        Node n0=new Node("0",4.0);
+        Node n1=new Node("1",4.0);
+        Node n2=new Node("2",4.0);
+        Node n3=new Node("3",4.0);
+        Node n4=new Node("4",4.0);
+        Node n5=new Node("5",5.0);
+        Node n6=new Node("6",4.0);
+        Node n7=new Node("6",4.0);
+        Node n8=new Node("8",5.0);
+        Node n9=new Node("9",4.0);
 
         Edge e1=new Edge(A, n0, 9.0);
         Edge e2=new Edge(A, n8, 1.0);
@@ -56,18 +56,18 @@ public class DijkstraPathTest {
     @Test
     public void UnDirectedTest(){
         DijkstraSP sp=new DijkstraSP();
-        Node s=new Node("A",2,4.0);
-        Node e=new Node("9",2,4.0);
+        Node s=new Node("A",4.0);
+        Node e=new Node("9",4.0);
         sp.generate(undirected,s,e);
 
         List<Node> actual_path=sp.getPath();
 
-        Node A=new Node("A",2,4.0);
-        Node n8=new Node("8",2,5.0);
-        Node n1=new Node("1",2,4.0);
-        Node n5=new Node("5",3,5.0);
-        Node n6=new Node("6",2,4.0);
-        Node n9=new Node("9",2,4.0);
+        Node A=new Node("A",4.0);
+        Node n8=new Node("8",5.0);
+        Node n1=new Node("1",4.0);
+        Node n5=new Node("5",5.0);
+        Node n6=new Node("6",4.0);
+        Node n9=new Node("9",4.0);
 
         List<Node> expected_result=new ArrayList<>(Arrays.asList(A,n8,n1,n5,n6,n9));
 
@@ -85,15 +85,15 @@ public class DijkstraPathTest {
     @Test
     public void DirectedTest(){
         DijkstraSP sp=new DijkstraSP();
-        Node s=new Node("A",2,4.0);
-        Node e=new Node("9",2,4.0);
+        Node s=new Node("A",4.0);
+        Node e=new Node("9",4.0);
         sp.generate(undirected,s,e);
 
         List<Node> actual_path=sp.getPath();
 
-        Node A=new Node("A",2,4.0);
-        Node n0=new Node("0",2,4.0);
-        Node n9=new Node("9",2,4.0);
+        Node A=new Node("A",4.0);
+        Node n0=new Node("0",4.0);
+        Node n9=new Node("9",4.0);
 
         List<Node> expected_result=new ArrayList<>(Arrays.asList(A,n0,n9));
 

@@ -10,10 +10,10 @@ public class Node{
     private double weight;
 
 
-    public Node(String name, int size, double elevation){
+    public Node(String name, double weight){
         this.connections =new HashSet<>();
         this.name =name;
-        this.weight =elevation;
+        this.weight =weight;
     }
 
     public void addEdge(Edge new_edge){

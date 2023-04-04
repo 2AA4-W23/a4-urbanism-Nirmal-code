@@ -18,10 +18,10 @@ public class DirectedGraphTest{
     @BeforeAll
     public static void setUp(){
 
-        Node A=new Node("A",2,4.0);
-        Node n0=new Node("0",2,4.0);
-        Node n2=new Node("2",2,4.0);
-        Node n7=new Node("6",2,4.0);
+        Node A=new Node("A",4.0);
+        Node n0=new Node("0",4.0);
+        Node n2=new Node("2",4.0);
+        Node n7=new Node("6",4.0);
 
         Edge e1=new Edge(A, n0, 9.0);
         Edge e3=new Edge(A, n2, 5.0);
@@ -34,8 +34,8 @@ public class DirectedGraphTest{
 
     @Test
     public void updateNodeTest(){
-        Node n3=new Node("3", 2, 4.0);
-        Node n4=new Node("4",2,4.0);
+        Node n3=new Node("3",  4.0);
+        Node n4=new Node("4",4.0);
 
         graph.addEdge(new Edge(n3,n4,5.0));
 
@@ -50,7 +50,7 @@ public class DirectedGraphTest{
 
     @Test
     public void addNodeTest(){
-        Node n3=new Node("3", 2, 4.0);
+        Node n3=new Node("3",  4.0);
 
         graph.addNode(n3);
 
@@ -62,7 +62,7 @@ public class DirectedGraphTest{
 
     @Test
     public void duplicateNode(){
-        Node B=new Node("A", 2, 4.0);
+        Node B=new Node("A", 4.0);
 
         graph.addNode(B);
 
@@ -74,8 +74,8 @@ public class DirectedGraphTest{
 
     @Test
     public void duplicateEdge(){
-        Node B=new Node("A",2,4.0);
-        Node C=new Node("0",2,4.0);
+        Node B=new Node("A",4.0);
+        Node C=new Node("0",4.0);
         Edge e=new Edge(B, C, 9.0);
 
         int expected_result=graph.getEdges().size();
