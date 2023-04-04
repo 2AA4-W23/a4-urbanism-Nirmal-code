@@ -3,6 +3,7 @@ package ca.mcmaster.cas.se2aa4.a3.island.BuildingBlocks;
 import ca.mcmaster.cas.se2aa4.a2.io.Structs.Property;
 import ca.mcmaster.cas.se2aa4.a2.io.Structs.Segment;
 import ca.mcmaster.cas.se2aa4.a2.io.Structs.Vertex;
+import ca.mcmaster.cas.se2aa4.a3.island.GraphBuildingBlocks.SegmentObserver;
 import ca.mcmaster.cas.se2aa4.a3.island.TilesTypes.SegmentElement;
 import ca.mcmaster.cas.se2aa4.a3.tools.ExtractSegmentInfo;
 
@@ -20,6 +21,8 @@ public class TileSegment extends ExtractSegmentInfo implements TileProperties{
 
     private SegmentElement element;
 
+    SegmentObserver observer;
+
     private int numRivers;
 
     public TileSegment(Segment segment, List<Vertex> vertices, int offset){
@@ -33,6 +36,10 @@ public class TileSegment extends ExtractSegmentInfo implements TileProperties{
 
     public void setColor(Color color){
         this.averageColor = color;
+    }
+
+    public void setObserver(SegmentObserver observer){
+        this.observer=observer;
     }
 
     public void setTileVertex1(TileVertex vertex){
@@ -84,6 +91,7 @@ public class TileSegment extends ExtractSegmentInfo implements TileProperties{
     }
 
     public Segment getSegment(){
+//        element=observer.getTerrain();
         if (element==SegmentElement.LAND){
             setAverageColor();
         }else{

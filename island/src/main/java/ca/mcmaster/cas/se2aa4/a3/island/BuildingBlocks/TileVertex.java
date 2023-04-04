@@ -2,6 +2,7 @@ package ca.mcmaster.cas.se2aa4.a3.island.BuildingBlocks;
 
 import ca.mcmaster.cas.se2aa4.a2.io.Structs.Property;
 import ca.mcmaster.cas.se2aa4.a2.io.Structs.Vertex;
+import ca.mcmaster.cas.se2aa4.a3.island.GraphBuildingBlocks.VertexObserver;
 import ca.mcmaster.cas.se2aa4.a3.island.TilesTypes.VertexElement;
 import ca.mcmaster.cas.se2aa4.a3.tools.ExtractVertexInfo;
 
@@ -13,6 +14,8 @@ public class TileVertex extends ExtractVertexInfo implements TileProperties{
     List<Color> colorList;
     Color averageColor = new Color(0, 0, 0, 0);
     String vertexType;
+
+    VertexObserver observer;
 
     Double temperature;
 
@@ -37,6 +40,10 @@ public class TileVertex extends ExtractVertexInfo implements TileProperties{
 
     public void setColor(Color color){
         this.averageColor = color;
+    }
+
+    public void setObserver(VertexObserver observer){
+        this.observer=observer;
     }
 
 
@@ -87,6 +94,7 @@ public class TileVertex extends ExtractVertexInfo implements TileProperties{
     }
 
     public Vertex getVertex(){
+//        vertexElement=observer.getTerrain();
         if (isVertexLand() | isVertexWater()){
             setAverageColor();
         }else{
