@@ -27,16 +27,16 @@ public class IslandNode extends GraphElement{
         return this.terrain_type;
     }
 
-    @Override
-    public boolean equals(Object other)
-    {
-        return this.node.equals(((IslandNode)other).node);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(this.node);
-    }
+//    @Override
+//    public boolean equals(Object other)
+//    {
+//        return this.node.equals(((Node)other));
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(this.node);
+//    }
 
 
 }

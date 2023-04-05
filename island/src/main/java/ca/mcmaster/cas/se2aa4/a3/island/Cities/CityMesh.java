@@ -6,6 +6,7 @@ import ca.mcmaster.cas.se2aa4.a3.island.GraphBuildingBlocks.IslandEdge;
 import ca.mcmaster.cas.se2aa4.a3.island.GraphBuildingBlocks.IslandNode;
 import ca.mcmaster.cas.se2aa4.a3.island.GraphBuildingBlocks.SegmentObserver;
 import ca.mcmaster.cas.se2aa4.a3.island.GraphBuildingBlocks.VertexObserver;
+import ca.mcmaster.cas.se2aa4.a3.island.TilesTypes.SegmentElement;
 import ca.mcmaster.cas.se2aa4.a3.island.TilesTypes.VertexElement;
 import ca.mcmaster.cas.se2aa4.a4.urban.BuildingBlocks.Edge;
 import ca.mcmaster.cas.se2aa4.a4.urban.BuildingBlocks.Node;
@@ -156,4 +157,57 @@ public class CityMesh {
         capitol.setTerrain(VertexElement.CAPITOL);
         capitol.alert();
     }
+
+    public void setPaths(){
+        DijkstraSP sp=new DijkstraSP();
+        List<Node> path;
+
+        for (IslandNode n: cities){
+            sp.generate(graph, capitol.getNode(), n.getNode());
+            path=sp.getPath();
+
+            for (int i=0; i<path.size()-1; i++){
+                IslandNode n1=findNode(path.get(i));
+                IslandNode n2=findNode(path.get(i+1));
+
+                if (i!=0){
+                    n1.setTerrain(VertexElement.ROAD);
+                    n1.alert();
+                }
+
+                if ((i+1)<path.size()-1){
+                    n2.setTerrain(VertexElement.ROAD);
+                    n2.alert();
+                }
+
+
+                IslandEdge edge=findEdge(n1.getNode(),n2.getNode());
+                edge.setTerrain(SegmentElement.ROAD);
+
+                edge.alert();
+
+            }
+
+        }
+    }
+
+    private IslandNode findNode(Node n){
+        for (IslandNode i: nodes){
+            if (i.getNode().equals(n)){
+                return i;
+            }
+        }
+        return null;
+    }
+
+    private IslandEdge findEdge(Node n1, Node n2){
+        for (IslandEdge e: edges){
+            Edge edge=e.getEdge();
+            if (edge.getN1().equals(n1) & edge.getN2().equals(n2) | edge.getN1().equals(n2) & edge.getN2().equals(n1)){
+                return e;
+            }
+        }
+        return null;
+    }
+
 }

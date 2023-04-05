@@ -21,18 +21,22 @@ public class IslandEdge extends GraphElement{
         return this.terrain_type;
     }
 
+    public void setTerrain(SegmentElement element){
+        this.terrain_type=element;
+    }
+
     public Edge getEdge(){
         return this.edge;
     }
 
-    @Override
-    public boolean equals(Object obj){
-        IslandEdge comparator=(IslandEdge)obj;
-        return comparator.edge.equals(this.edge);
-    }
-
-    @Override
-    public int hashCode(){
-        return Objects.hash(this.edge);
-    }
+//    @Override
+//    public boolean equals(Object obj){
+//        IslandEdge comparator=(IslandEdge)obj;
+//        return comparator.edge.equals(this.edge);
+//    }
+//
+//    @Override
+//    public int hashCode(){
+//        return Objects.hash(this.edge);
+//    }
 }

@@ -31,6 +31,7 @@ public class TileSegment extends ExtractSegmentInfo implements TileProperties{
         this.colorList = new ArrayList<>();
         this.element=SegmentElement.LAND;
         this.numRivers = 0;
+        this.element=SegmentElement.LAND;
         segmentType = extractSegmentType(segment.getPropertiesList());
     }
 
@@ -108,11 +109,15 @@ public class TileSegment extends ExtractSegmentInfo implements TileProperties{
     }
 
     public Segment getSegment(){
-//        element=observer.getTerrain();
-        if (element==SegmentElement.LAND){
-            setAverageColor();
+        if (observer!=null){
+            element=observer.getTerrain();
+            if (element.equals(SegmentElement.LAND)){
+                setAverageColor();
+            }else{
+                averageColor=element.getColor();
+            }
         }else{
-            averageColor=element.getColor();
+            setAverageColor();
         }
         
         String colourCode = averageColor.getRed() + "," + averageColor.getGreen() + "," + averageColor.getBlue() + "," + averageColor.getAlpha();

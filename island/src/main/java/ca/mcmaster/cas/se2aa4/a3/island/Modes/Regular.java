@@ -110,6 +110,7 @@ public class Regular extends Mode {
         city.setSmallCity();
         city.setBigCity();
         city.setCapitol();
+        city.setPaths();
     }
 
 }
