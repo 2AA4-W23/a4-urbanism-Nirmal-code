@@ -108,6 +108,8 @@ public class Regular extends Mode {
 
         CityMesh city=new CityMesh(verticesInfoList,segmentInfoList);
         city.setSmallCity();
+        city.setBigCity();
+        city.setCapitol();
     }
 
 }

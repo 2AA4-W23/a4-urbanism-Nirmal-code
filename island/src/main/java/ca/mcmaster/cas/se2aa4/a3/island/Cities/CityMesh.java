@@ -10,6 +10,7 @@ import ca.mcmaster.cas.se2aa4.a3.island.TilesTypes.VertexElement;
 import ca.mcmaster.cas.se2aa4.a4.urban.BuildingBlocks.Edge;
 import ca.mcmaster.cas.se2aa4.a4.urban.BuildingBlocks.Node;
 import ca.mcmaster.cas.se2aa4.a4.urban.GraphADT.UndirectedGraph;
+import ca.mcmaster.cas.se2aa4.a4.urban.ShortestPath.DijkstraSP;
 
 import java.util.*;
 
@@ -18,7 +19,7 @@ public class CityMesh {
     Random rand=new Random();
 
     int num_small=10;
-    int num_big=rand.nextInt(1,4);
+    int num_big=5;
 
     UndirectedGraph graph;
 
@@ -26,9 +27,14 @@ public class CityMesh {
     List<IslandNode> nodes;
     List<IslandEdge> edges;
 
+    List<IslandNode> cities;
+
+    IslandNode capitol;
+
     public CityMesh(List<TileVertex> vertices, List<TileSegment> segments){
         nodes=setGraphNodes(vertices);
         edges=setGraphEdges(segments);
+        cities=new ArrayList<>();
         //Cross reference Nodes to IslandNodes by simply doing nodes.find(Node node)
         graph=new UndirectedGraph(getNodes(),getEdges());
     }
@@ -94,9 +100,9 @@ public class CityMesh {
             subject=rand.nextInt(0,nodes.size());
             node=nodes.get(subject);
             if (node.getTerrain().equals(VertexElement.LAND)){
-                System.out.println(subject);
                 node.setTerrain(VertexElement.SMALL_CITY);
                 node.alert();
+                cities.add(node);
                 i++;
             }
         }
@@ -104,10 +110,50 @@ public class CityMesh {
     }
 
 
-    private void setBigCity(){
+    public void setBigCity(){
+        int subject;
+        IslandNode node;
+        for (int i=0; i<num_big;){
+            subject=rand.nextInt(0,nodes.size());
+            node=nodes.get(subject);
+            if (node.getTerrain().equals(VertexElement.LAND)){
+                node.setTerrain(VertexElement.BIG_CITY);
+                node.alert();
+                cities.add(node);
+                i++;
+            }
+        }
     }
 
-    private void setCapitol(){
+    private IslandNode findCapitol(){
+        DijkstraSP sp=new DijkstraSP();
 
+        IslandNode capitol=cities.get(0);
+        double smallest_cost=Double.MAX_VALUE;
+
+        for (int i=0; i<cities.size(); i++){
+            double max_cost=0;
+            for (int j=0; j<cities.size(); j++){
+                if (i!=j){
+                    sp.generate(graph, cities.get(i).getNode(), cities.get(j).getNode());
+                    if (sp.getCost()>max_cost){
+                        max_cost=sp.getCost();
+                    }
+                }
+            }
+            if (max_cost<smallest_cost){
+                smallest_cost=max_cost;
+                capitol=cities.get(i);
+            }
+        }
+        return capitol;
+    }
+
+
+    public void setCapitol(){
+        this.capitol=findCapitol();
+        cities.remove(capitol);
+        capitol.setTerrain(VertexElement.CAPITOL);
+        capitol.alert();
     }
 }
