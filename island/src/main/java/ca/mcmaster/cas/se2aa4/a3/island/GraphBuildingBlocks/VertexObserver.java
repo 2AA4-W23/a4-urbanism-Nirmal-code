@@ -9,9 +9,11 @@ public class VertexObserver extends Observer {
 
     public VertexObserver(IslandNode element){
         this.observee=element;
+        this.terrain_type=element.terrain_type;
     }
     public void update(){
         this.terrain_type=observee.getTerrain();
+
     }
 
     public IslandNode getNode(){

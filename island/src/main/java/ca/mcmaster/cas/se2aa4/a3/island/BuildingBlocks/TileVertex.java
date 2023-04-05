@@ -36,10 +36,20 @@ public class TileVertex extends ExtractVertexInfo implements TileProperties{
         this.vertexElement = VertexElement.LAND;
         this.isRiver = false;
         this.vertexType = extractVertexType(vertex.getPropertiesList());
+        setAverageColor();
     }
 
     public void setColor(Color color){
         this.averageColor = color;
+    }
+
+    public void setTileElement(VertexElement v){
+        this.vertexElement=v;
+
+    }
+
+    public String getVertexType(){
+        return this.vertexType;
     }
 
     public void setObserver(VertexObserver observer){
@@ -101,12 +111,24 @@ public class TileVertex extends ExtractVertexInfo implements TileProperties{
         return false;
     }
 
+    private void updateValues(){
+        if (!isVertexLand() & !isVertexWater()){
+            System.out.println(getX()+"|"+getY());
+            averageColor=vertexElement.getColor();
+            thicknessDouble=vertexElement.getSize();
+        }else if (isRiver){
+            averageColor=new Color(15,94,196,254);
+        }else{
+            setAverageColor();
+        }
+    }
+
     public Vertex getVertex(){
-//        vertexElement=observer.getTerrain();
-        if (isVertexLand() | isVertexWater()){
+        if (vertexType.equals("Centroid")){
             setAverageColor();
         }else{
-            averageColor=vertexElement.getColor();
+            vertexElement=observer.getTerrain();
+            updateValues();
         }
         
         String colorCode = averageColor.getRed() + "," + averageColor.getGreen() + "," + averageColor.getBlue() + "," + averageColor.getAlpha();

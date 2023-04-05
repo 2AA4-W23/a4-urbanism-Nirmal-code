@@ -6,21 +6,25 @@ import ca.mcmaster.cas.se2aa4.a3.island.GraphBuildingBlocks.IslandEdge;
 import ca.mcmaster.cas.se2aa4.a3.island.GraphBuildingBlocks.IslandNode;
 import ca.mcmaster.cas.se2aa4.a3.island.GraphBuildingBlocks.SegmentObserver;
 import ca.mcmaster.cas.se2aa4.a3.island.GraphBuildingBlocks.VertexObserver;
+import ca.mcmaster.cas.se2aa4.a3.island.TilesTypes.VertexElement;
 import ca.mcmaster.cas.se2aa4.a4.urban.BuildingBlocks.Edge;
 import ca.mcmaster.cas.se2aa4.a4.urban.BuildingBlocks.Node;
 import ca.mcmaster.cas.se2aa4.a4.urban.GraphADT.UndirectedGraph;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 public class CityMesh {
 
+    Random rand=new Random();
+
+    int num_small=10;
+    int num_big=rand.nextInt(1,4);
+
     UndirectedGraph graph;
 
-    Set<IslandNode> nodes;
-    Set<IslandEdge> edges;
+    //List representation is easier to access a particular island node during city generation. Doesn't use set.
+    List<IslandNode> nodes;
+    List<IslandEdge> edges;
 
     public CityMesh(List<TileVertex> vertices, List<TileSegment> segments){
         nodes=setGraphNodes(vertices);
@@ -29,8 +33,8 @@ public class CityMesh {
         graph=new UndirectedGraph(getNodes(),getEdges());
     }
 
-    private Set<IslandNode> setGraphNodes(List<TileVertex> vertices){
-        Set<IslandNode> all_nodes=new HashSet<>();
+    private List<IslandNode> setGraphNodes(List<TileVertex> vertices){
+        List<IslandNode> all_nodes=new ArrayList<>();
         int index=0;
 
         for (TileVertex v: vertices){
@@ -44,8 +48,8 @@ public class CityMesh {
         return all_nodes;
     }
 
-    private Set<IslandEdge> setGraphEdges(List<TileSegment> segments){
-        Set<IslandEdge> all_segments=new HashSet<>();
+    private List<IslandEdge> setGraphEdges(List<TileSegment> segments){
+        List<IslandEdge> all_segments=new ArrayList<>();
 
         for (TileSegment s: segments){
             TileVertex v1=s.getTileVertex1();
@@ -67,7 +71,7 @@ public class CityMesh {
         return all_segments;
     }
 
-    public Set<Node> getNodes(){
+    private Set<Node> getNodes(){
         Set<Node> all_nodes=new HashSet<>();
         for (IslandNode i: nodes){
             all_nodes.add(i.getNode());
@@ -75,11 +79,35 @@ public class CityMesh {
         return all_nodes;
     }
 
-    public Set<Edge> getEdges(){
+    private Set<Edge> getEdges(){
         Set<Edge> all_edges=new HashSet<>();
         for (IslandEdge i: edges){
             all_edges.add(i.getEdge());
         }
         return all_edges;
+    }
+
+    public void setSmallCity(){
+        int subject;
+        IslandNode node;
+        for (int i=0; i<num_small;){
+            subject=rand.nextInt(0,nodes.size());
+            node=nodes.get(subject);
+            if (node.getTerrain().equals(VertexElement.LAND)){
+                System.out.println(subject);
+                node.setTerrain(VertexElement.SMALL_CITY);
+                node.alert();
+                i++;
+            }
+        }
+
+    }
+
+
+    private void setBigCity(){
+    }
+
+    private void setCapitol(){
+
     }
 }
