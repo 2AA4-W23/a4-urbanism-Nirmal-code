@@ -79,7 +79,7 @@ public class CityMesh {
 
     private void setCities(){
         city_gen=new CityGenerator();
-        city_gen.generate(graph,nodes, 30,20);
+        city_gen.generate(graph,nodes, 10,5);
         cities=city_gen.getCities();
         capitol=city_gen.getCapitol();
         city_gen=new CityGenerator();

@@ -46,6 +46,7 @@ public class CityGenerator {
             node=all_nodes.get(subject);
             if (node.getTerrain().equals(VertexElement.LAND)){
                 node.setTerrain(type);
+                node.getNode().setWeight(type.getWeight());
                 node.alert();
                 cities.add(node);
                 i++;

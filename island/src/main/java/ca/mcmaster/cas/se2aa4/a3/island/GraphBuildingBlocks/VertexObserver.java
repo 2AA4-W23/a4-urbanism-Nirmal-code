@@ -13,7 +13,6 @@ public class VertexObserver extends Observer {
     }
     public void update(){
         this.terrain_type=observee.getTerrain();
-
     }
 
     public IslandNode getNode(){

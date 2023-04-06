@@ -6,6 +6,7 @@ import ca.mcmaster.cas.se2aa4.a3.island.GraphBuildingBlocks.IslandEdge;
 import ca.mcmaster.cas.se2aa4.a3.island.GraphBuildingBlocks.IslandNode;
 import ca.mcmaster.cas.se2aa4.a3.island.GraphBuildingBlocks.SegmentObserver;
 import ca.mcmaster.cas.se2aa4.a3.island.GraphBuildingBlocks.VertexObserver;
+import ca.mcmaster.cas.se2aa4.a3.island.TilesTypes.VertexElement;
 import ca.mcmaster.cas.se2aa4.a4.urban.BuildingBlocks.Edge;
 
 import java.util.*;
@@ -15,9 +16,13 @@ public class GraphGenerator {
     protected List<IslandNode> setGraphNodes(List<TileVertex> vertices){
         List<IslandNode> all_nodes=new ArrayList<>();
         int index=0;
+        double total_weight;
+        VertexElement element;
 
         for (TileVertex v: vertices){
-            IslandNode new_node=new IslandNode(Integer.toString(index),v.getElevation(),v.getVertexElement());
+            element=v.getVertexElement();
+            total_weight=v.getElevation()+element.getWeight();
+            IslandNode new_node=new IslandNode(Integer.toString(index),total_weight,v.getVertexElement());
 
             VertexObserver new_observer=new VertexObserver(new_node);
             new_node.attatch(new_observer);

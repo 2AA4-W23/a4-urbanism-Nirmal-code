@@ -32,6 +32,10 @@ public class Node{
         return this.weight;
     }
 
+    public void setWeight(double weight){
+        this.weight=weight;
+    }
+
     //Overide java's implementation of equals.
     //Ensures that when adding to set, two nodes that are equal won't be added.
     @Override
