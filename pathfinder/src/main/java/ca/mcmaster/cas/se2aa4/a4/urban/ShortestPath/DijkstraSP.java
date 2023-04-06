@@ -11,7 +11,7 @@ public class DijkstraSP implements ShortestPath {
     HashMap<Node, Node> all_sp;
     HashMap<Node, Double> cost;
     PriorityQueue<Node> queue;
-    List<Node> node_sp;
+    List<Edge> node_sp;
     Node start;
     Node end;
 
@@ -59,28 +59,26 @@ public class DijkstraSP implements ShortestPath {
     }
 
 
-    private List<Node> findPathEdges(Node start, Node end, HashMap<Node,Node> all_path){
+    private List<Edge> findPathEdges(Node start, Node end, HashMap<Node,Node> all_path){
 
-        List<Node> node_path=new ArrayList<>();
+        List<Edge> node_path=new ArrayList<>();
 
         //Since each node references previous node, we must start at the last node.
         Node curr_node=end;
         //Will be used to reference the next (previous) node.
         Node next_node;
 
-        while (curr_node!=start & curr_node!=null) {
 
+        while (curr_node!=start & curr_node!=null) {
 
             //Finds the next node in the path.
             next_node=all_path.get(curr_node);
 
             if (next_node!=null){
                 for (Edge e : next_node.getEdges()) {
-
-                    if (e.getN2() == curr_node) {
-                        node_path.add(0,e.getN2());
+                    if (e.getN2().equals(curr_node)) {
+                        node_path.add(0,e);
                     }
-
                 }
             }else{
                 node_path.clear();
@@ -88,14 +86,11 @@ public class DijkstraSP implements ShortestPath {
             }
             curr_node = next_node;
         }
-
-        node_path.add(0,this.start);
-
         return node_path;
 
     }
 
-    public List<Node> getPath() {
+    public List<Edge> getPath() {
         return this.node_sp;
     }
 

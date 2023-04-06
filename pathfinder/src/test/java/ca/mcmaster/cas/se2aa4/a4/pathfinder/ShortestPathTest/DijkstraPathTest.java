@@ -20,9 +20,12 @@ public class DijkstraPathTest {
     static UndirectedGraph undirected;
     static DirectedGraph directed;
 
+    static Node s;
+    static Node e;
+
     @BeforeAll
     public static void setUp(){
-        Node A=new Node("A",4.0);
+        s=new Node("A",4.0);
         Node n0=new Node("0",4.0);
         Node n1=new Node("1",4.0);
         Node n2=new Node("2",4.0);
@@ -32,35 +35,44 @@ public class DijkstraPathTest {
         Node n6=new Node("6",4.0);
         Node n7=new Node("6",4.0);
         Node n8=new Node("8",5.0);
-        Node n9=new Node("9",4.0);
+        e=new Node("9",4.0);
 
-        Edge e1=new Edge(A, n0, 9.0);
-        Edge e2=new Edge(A, n8, 1.0);
-        Edge e3=new Edge(A, n2, 5.0);
+        Edge e1=new Edge(s, n0, 9.0);
+        Edge e2=new Edge(s, n8, 1.0);
+        Edge e3=new Edge(s, n2, 5.0);
         Edge e4=new Edge(n2, n7, 7.0);
         Edge e5=new Edge(n7, n0, 12.0);
         Edge e7=new Edge(n0, n4, 13.0);
-        Edge e8=new Edge(n0, n9, 11.0);
-        Edge e9=new Edge(n9, n5, 8.0);
-        Edge e10=new Edge(n9, n6, 4.0);
+        Edge e8=new Edge(n0, e, 11.0);
+        Edge e9=new Edge(e, n5, 8.0);
+        Edge e10=new Edge(e, n6, 4.0);
         Edge e11=new Edge(n6, n5, 3.0);
         Edge e12=new Edge(n5, n1, 2.0);
         Edge e13=new Edge(n5, n8, 7.0);
         Edge e14=new Edge(n8, n1, 4.0);
 
-        undirected=new UndirectedGraph(new HashSet<>(Arrays.asList(A,n0,n1,n2,n3,n4,n5,n6,n7,n8,n9)), new HashSet<>(Arrays.asList(e1,e2,e3,e4,e5,e7,e8,e9,e10,e11,e12,e13,e14)));
-        directed=new DirectedGraph(new HashSet<>(Arrays.asList(A,n0,n1,n2,n3,n4,n5,n6,n7,n8,n9)), new HashSet<>(Arrays.asList(e1,e2,e3,e4,e5,e7,e8,e9,e10,e11,e12,e13,e14)));
+        undirected=new UndirectedGraph(new HashSet<>(Arrays.asList(s,n0,n1,n2,n3,n4,n5,n6,n7,n8,e)), new HashSet<>(Arrays.asList(e1,e2,e3,e4,e5,e7,e8,e9,e10,e11,e12,e13,e14)));
+        directed=new DirectedGraph(new HashSet<>(Arrays.asList(s,n0,n1,n2,n3,n4,n5,n6,n7,n8,e)), new HashSet<>(Arrays.asList(e1,e2,e3,e4,e5,e7,e8,e9,e10,e11,e12,e13,e14)));
 
     }
 
     @Test
     public void UnDirectedTest(){
         DijkstraSP sp=new DijkstraSP();
-        Node s=new Node("A",4.0);
-        Node e=new Node("9",4.0);
         sp.generate(undirected,s,e);
 
-        List<Node> actual_path=sp.getPath();
+        List<Edge> actual_path=sp.getPath();
+
+        List<Node> path=new ArrayList<>();
+
+        for (Edge edge: actual_path){
+            if (!path.contains(edge.getN1())){
+                path.add(edge.getN1());
+            }
+            if (!path.contains(edge.getN2())){
+                path.add(edge.getN2());
+            }
+        }
 
         Node A=new Node("A",4.0);
         Node n8=new Node("8",5.0);
@@ -74,7 +86,7 @@ public class DijkstraPathTest {
         boolean check=true;
 
         for (int i=0; i<actual_path.size(); i++){
-            if (!actual_path.get(i).equals(expected_result.get(i))){
+            if (!path.get(i).equals(expected_result.get(i))){
                 check=false;
                 break;
             }
@@ -85,13 +97,24 @@ public class DijkstraPathTest {
     @Test
     public void DirectedTest(){
         DijkstraSP sp=new DijkstraSP();
-        Node s=new Node("A",4.0);
+        Node s=new Node("100",4.0);
         Node e=new Node("9",4.0);
         sp.generate(undirected,s,e);
 
-        List<Node> actual_path=sp.getPath();
+        List<Edge> actual_path=sp.getPath();
 
-        Node A=new Node("A",4.0);
+        List<Node> path=new ArrayList<>();
+
+        for (Edge edge: actual_path){
+            if (!path.contains(edge.getN1())){
+                path.add(edge.getN1());
+            }
+            if (!path.contains(edge.getN2())){
+                path.add(edge.getN2());
+            }
+        }
+
+        Node A=new Node("100",4.0);
         Node n0=new Node("0",4.0);
         Node n9=new Node("9",4.0);
 
@@ -100,7 +123,7 @@ public class DijkstraPathTest {
         boolean check=true;
 
         for (int i=0; i<actual_path.size(); i++){
-            if (!actual_path.get(i).equals(expected_result.get(i))){
+            if (!path.get(i).equals(expected_result.get(i))){
                 check=false;
                 break;
             }

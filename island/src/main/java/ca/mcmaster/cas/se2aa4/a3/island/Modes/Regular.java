@@ -107,9 +107,6 @@ public class Regular extends Mode {
         humidity.setHumidityColors(allLand);
 
         CityMesh city=new CityMesh(verticesInfoList,segmentInfoList);
-        city.setSmallCity();
-        city.setBigCity();
-        city.setCapitol();
         city.setPaths();
     }
 

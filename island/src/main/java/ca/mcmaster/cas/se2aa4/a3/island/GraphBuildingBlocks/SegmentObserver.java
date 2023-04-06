@@ -8,7 +8,7 @@ public class SegmentObserver extends Observer{
 
     public SegmentObserver(IslandEdge element){
         this.observee=element;
-        this.terrain_type=SegmentElement.LAND;
+        this.terrain_type=element.terrain_type;
     }
     public void update(){
         this.terrain_type=observee.getTerrain();

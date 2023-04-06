@@ -15,13 +15,13 @@ public class NodeTest {
 
     @BeforeAll
     public static void setUp(){
-        N1=new Node("Toronto",4.0);
-        N2=new Node("Vancouver",10.0);
+        N1=new Node("0",4.0);
+        N2=new Node("1",10.0);
     }
 
     @Test
     public void TestNodeName(){
-        assertTrue(N1.getName().equals("Toronto") & N2.getName().equals("Vancouver"));
+        assertTrue(N1.getName().equals("0") & N2.getName().equals("1"));
     }
 
     @Test

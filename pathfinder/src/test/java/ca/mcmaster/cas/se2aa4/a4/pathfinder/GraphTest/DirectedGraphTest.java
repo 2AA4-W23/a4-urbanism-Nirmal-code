@@ -18,7 +18,7 @@ public class DirectedGraphTest{
     @BeforeAll
     public static void setUp(){
 
-        Node A=new Node("A",4.0);
+        Node A=new Node("100",4.0);
         Node n0=new Node("0",4.0);
         Node n2=new Node("2",4.0);
         Node n7=new Node("6",4.0);
@@ -62,7 +62,7 @@ public class DirectedGraphTest{
 
     @Test
     public void duplicateNode(){
-        Node B=new Node("A", 4.0);
+        Node B=new Node("100", 4.0);
 
         graph.addNode(B);
 
@@ -74,7 +74,7 @@ public class DirectedGraphTest{
 
     @Test
     public void duplicateEdge(){
-        Node B=new Node("A",4.0);
+        Node B=new Node("100",4.0);
         Node C=new Node("0",4.0);
         Edge e=new Edge(B, C, 9.0);
 

@@ -30,12 +30,12 @@ public class IslandNode extends GraphElement{
 //    @Override
 //    public boolean equals(Object other)
 //    {
-//        return this.node.equals(((Node)other));
+//        return this.node.equals(((IslandNode)other).node);
 //    }
-//
+
 //    @Override
 //    public int hashCode() {
-//        return Objects.hash(this.node);
+//        return Objects.hash(this.node.getName());
 //    }
 
 

@@ -113,7 +113,6 @@ public class TileVertex extends ExtractVertexInfo implements TileProperties{
 
     private void updateValues(){
         if (!isVertexLand() & !isVertexWater()){
-            System.out.println(getX()+"|"+getY());
             averageColor=vertexElement.getColor();
             thicknessDouble=vertexElement.getSize();
         }else if (isRiver){
