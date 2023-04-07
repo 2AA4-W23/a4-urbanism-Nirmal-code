@@ -32,8 +32,8 @@ public class Node{
         return this.weight;
     }
 
-    public void setWeight(double weight){
-        this.weight=weight;
+    public void addWeight(double weight){
+        this.weight+=weight;
     }
 
     //Overide java's implementation of equals.

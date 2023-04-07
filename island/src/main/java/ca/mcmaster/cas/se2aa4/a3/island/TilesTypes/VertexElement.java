@@ -5,7 +5,7 @@ import ca.mcmaster.cas.se2aa4.a3.island.Terrains.LandTerrains.LandComposition;
 import java.awt.*;
 
 public enum VertexElement {
-    WATER(null,1.0,30.0),
+    WATER(null,1.0,400.0),
     LAND(null, 1.0,0.0),
     SMALL_CITY(new Color(255, 231, 2,254),5.0,300.0),
     BIG_CITY(new Color(116, 2, 255,254),10.0,300.0),

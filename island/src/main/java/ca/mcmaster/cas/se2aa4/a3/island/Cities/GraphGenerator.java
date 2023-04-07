@@ -21,7 +21,7 @@ public class GraphGenerator {
 
         for (TileVertex v: vertices){
             element=v.getVertexElement();
-            total_weight=v.getElevation()+element.getWeight();
+            total_weight=v.getElevation()/100+element.getWeight();
             IslandNode new_node=new IslandNode(Integer.toString(index),total_weight,v.getVertexElement());
 
             VertexObserver new_observer=new VertexObserver(new_node);

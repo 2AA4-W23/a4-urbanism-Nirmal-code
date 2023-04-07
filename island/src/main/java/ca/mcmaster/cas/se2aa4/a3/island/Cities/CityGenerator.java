@@ -46,7 +46,6 @@ public class CityGenerator {
             node=all_nodes.get(subject);
             if (node.getTerrain().equals(VertexElement.LAND)){
                 node.setTerrain(type);
-                node.getNode().setWeight(type.getWeight());
                 node.alert();
                 cities.add(node);
                 i++;
@@ -67,11 +66,10 @@ public class CityGenerator {
             for (int j=0; j<cities.size(); j++){
                 if (i!=j){
                     sp.generate(graph, cities.get(i).getNode(), cities.get(j).getNode());
-                    if (sp.getCost()>max_cost){
-                        max_cost=sp.getCost();
-                    }
+                    max_cost+=sp.getCost();
                 }
             }
+            max_cost/=cities.size();
             if (max_cost<smallest_cost){
                 smallest_cost=max_cost;
                 capitol=cities.get(i);

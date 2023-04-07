@@ -16,7 +16,9 @@ public class IslandNode extends GraphElement{
     }
 
     public void setTerrain(VertexElement new_terrain){
+        node.addWeight(-1*terrain_type.getWeight());
         this.terrain_type=new_terrain;
+        node.addWeight(terrain_type.getWeight());
     }
 
     public Node getNode(){
