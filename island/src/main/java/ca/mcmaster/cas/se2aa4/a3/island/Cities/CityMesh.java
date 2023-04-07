@@ -15,7 +15,6 @@ import java.util.*;
 
 public class CityMesh {
 
-    Random rand=new Random();
 
     GraphGenerator generator;
     CityGenerator city_gen;
@@ -30,13 +29,16 @@ public class CityMesh {
 
     IslandNode capitol;
 
-    public CityMesh(List<TileVertex> vertices, List<TileSegment> segments){
+    int number_cities;
+
+    public CityMesh(int num_cities, List<TileVertex> vertices, List<TileSegment> segments){
         generator=new GraphGenerator();
         nodes=generator.setGraphNodes(vertices);
         edges=generator.setGraphEdges(segments);
         cities=new ArrayList<>();
         //Cross reference Nodes to IslandNodes by simply doing nodes.find(Node node)
         graph=new UndirectedGraph(getNodes(),getEdges());
+        number_cities=num_cities;
         setCities();
     }
 
@@ -80,7 +82,7 @@ public class CityMesh {
     private void setCities(){
         city_gen=new CityGenerator();
 
-        city_gen.generate(graph,nodes, 40,20);
+        city_gen.generate(graph,nodes, number_cities);
 
         cities=city_gen.getCities();
         capitol=city_gen.getCapitol();

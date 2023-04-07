@@ -3,13 +3,10 @@ package ca.mcmaster.cas.se2aa4.a3.island;
 import ca.mcmaster.cas.se2aa4.a2.io.Structs.Mesh;
 import ca.mcmaster.cas.se2aa4.a3.island.Altitude.AltitudeType;
 import ca.mcmaster.cas.se2aa4.a3.island.GeneralBiome.BiomeTypes;
-import ca.mcmaster.cas.se2aa4.a3.island.Modes.Heatmaps;
+import ca.mcmaster.cas.se2aa4.a3.island.Modes.*;
 import ca.mcmaster.cas.se2aa4.a3.island.SoilProfile.SoilTypes;
 import ca.mcmaster.cas.se2aa4.a3.tools.CommandLineReader;
 import ca.mcmaster.cas.se2aa4.a3.tools.RandomGenerator;
-import ca.mcmaster.cas.se2aa4.a3.island.Modes.ModeType;
-import ca.mcmaster.cas.se2aa4.a3.island.Modes.Regular;
-import ca.mcmaster.cas.se2aa4.a3.island.Modes.Sandbox;
 import ca.mcmaster.cas.se2aa4.a3.island.Shape.ShapeType;
 
 import org.apache.commons.cli.*;
@@ -29,6 +26,8 @@ public class IslandCommandLineReader implements CommandLineReader {
     private String elevation;
     private String biome;
 
+    private String cities;
+
     private String soil;
     private ModeType mapMode = null;
     private AltitudeType altitude = null;
@@ -40,6 +39,8 @@ public class IslandCommandLineReader implements CommandLineReader {
     private int maxNumRivers;
     private int numAquifers;
     private Options options;
+
+    private int num_cities;
 
     public static RandomGenerator randomGenerator=new RandomGenerator();
 
@@ -72,6 +73,7 @@ public class IslandCommandLineReader implements CommandLineReader {
         options.addOption(new Option("l", "lakes", true, "Maximum number of lakes (Positive Integer)"));
         options.addOption(new Option("s", "soil", true, "Enter the soil profile {wet, humid, dry}"));
         options.addOption(new Option("aq", "aquifers", true, "Number of aquifers (Positive Integer)"));
+        options.addOption(new Option("ci", "cities", true, "Number of cities (Position Integer)"));
         options.addOption(new Option("h", "help", false, "Help"));
 
     }
@@ -93,6 +95,7 @@ public class IslandCommandLineReader implements CommandLineReader {
         maxLakes = cmd.getOptionValue("lakes");
         soil=cmd.getOptionValue("soil");
         aquifer = cmd.getOptionValue("aquifers");
+        cities=cmd.getOptionValue("cities");
 
         //Help option
         if (cmd.hasOption("help")) {
@@ -169,13 +172,20 @@ public class IslandCommandLineReader implements CommandLineReader {
             numAquifers = 0;
         }
 
+        //Set the number of cities
+        if (cmd.hasOption("cities")) {
+            num_cities = Integer.parseInt(cities);
+        } else {
+            num_cities = 0;
+        }
+
         //Output the user input
 
         if (mapMode.equals(ModeType.SANDBOX)){
             System.out.println("Mode: " + mode);
         }
         else{
-            System.out.println("Input Mesh Path: " + inputMeshFile + "Output Mesh Path: " + outputMeshFile + "Mode: " + mode + "\nShape: " + shape + "\nAltitude: " + elevation + "\nBiomes: " + biome + "\nLakes: " + maxNumLakes + "\nRivers: " + maxNumRivers + "\nSoil Profile: " + soil + "\nAquifiers: " + numAquifers);
+            System.out.println("Input Mesh Path: " + inputMeshFile + "Output Mesh Path: " + outputMeshFile + "Mode: " + mode + "\nShape: " + shape + "\nAltitude: " + elevation + "\nBiomes: " + biome + "\nLakes: " + maxNumLakes + "\nRivers: " + maxNumRivers + "\nSoil Profile: " + soil + "\nAquifiers: " + numAquifers+ "\nCities: " + num_cities);
         }
     }
     
@@ -202,6 +212,14 @@ public class IslandCommandLineReader implements CommandLineReader {
         }
         return false;
     }
+
+    protected boolean isUrbanMode(){
+        if (mapMode.equals(ModeType.URBAN)) {
+            return true;
+        }
+        return false;
+    }
+
     public Mesh generateFromInputs() throws IOException{
         RunMode runMode = new RunMode();
         return runMode.getMesh();
@@ -222,6 +240,9 @@ public class IslandCommandLineReader implements CommandLineReader {
             }else if (isHeatmapMode()){
                 Heatmaps heatmap=new Heatmaps(inputMeshFile, outputMeshFile, shapeToUse, altitude, generalBiome,maxNumLakes, maxNumRivers,generalSoil, numAquifers);
                 mesh=heatmap.getMesh();
+            }else if(isUrbanMode()){
+                Urban urban=new Urban(inputMeshFile, outputMeshFile, shapeToUse, altitude, generalBiome,maxNumLakes, maxNumRivers,generalSoil, numAquifers, num_cities);
+                mesh=urban.getMesh();
             }
             else{
                 throw new IOException("Invalid mode was entered");

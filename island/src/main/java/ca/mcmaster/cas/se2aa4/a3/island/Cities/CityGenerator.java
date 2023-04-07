@@ -21,12 +21,11 @@ public class CityGenerator {
     UndirectedGraph graph;
 
 
-    public void generate(UndirectedGraph graph, List<IslandNode> nodes, int num_small, int num_big){
+    public void generate(UndirectedGraph graph, List<IslandNode> nodes, int num_cities){
         this.cities=new ArrayList<>();
         this.graph=graph;
         this.all_nodes=nodes;
-        setCities(VertexElement.SMALL_CITY, num_small);
-        setCities(VertexElement.BIG_CITY, num_big);
+        setCities(num_cities);
         setCapitol();
     }
 
@@ -38,14 +37,19 @@ public class CityGenerator {
         return this.capitol;
     }
 
-    private void setCities(VertexElement type, int num_elements){
+    private void setCities(int num_elements){
         int subject;
         IslandNode node;
         for (int i=0; i<num_elements;){
             subject=rand.nextInt(0,all_nodes.size());
             node=all_nodes.get(subject);
             if (node.getTerrain().equals(VertexElement.LAND)){
-                node.setTerrain(type);
+                boolean big=rand.nextBoolean();
+                if (big){
+                    node.setTerrain(VertexElement.BIG_CITY);
+                }else{
+                    node.setTerrain(VertexElement.SMALL_CITY);
+                }
                 node.alert();
                 cities.add(node);
                 i++;
