@@ -123,13 +123,15 @@ public class TileVertex extends ExtractVertexInfo implements TileProperties{
     }
 
     public Vertex getVertex(){
-        if (vertexType.equals("Centroid")){
-            setAverageColor();
-        }else{
+        if (isRiver){
+            averageColor=new Color(15,94,196,254);
+        }else if (observer!=null){
             vertexElement=observer.getTerrain();
             updateValues();
+        }else{
+            setAverageColor();
         }
-        
+
         String colorCode = averageColor.getRed() + "," + averageColor.getGreen() + "," + averageColor.getBlue() + "," + averageColor.getAlpha();
         Property colorProperty = Property.newBuilder().setKey("rgb_color").setValue(colorCode).build();
         Property thicknessProp = Property.newBuilder().setKey("thickness").setValue(thicknessDouble.toString()).build();

@@ -54,13 +54,18 @@ public class Altitude {
         this.min_elevation=Double.MAX_VALUE;
         this.tiles=tiles;
         this.function=altitude.getAltitude(tiles);
+        double average;
         for(Tile tile: tiles){
+            average=0;
             for (TileVertex vertex:tile.getTileVertices()){
                 vertex.setElevation(function.valueAt(vertex.getX(), vertex.getY()));
+                average+=vertex.getElevation();
                 if (vertex.getElevation()<min_elevation){
                     min_elevation=vertex.getElevation();
                 }
             }
+            average/=tile.getTileVertices().size();
+            tile.getCentroid().setElevation(average);
         }
     }
 

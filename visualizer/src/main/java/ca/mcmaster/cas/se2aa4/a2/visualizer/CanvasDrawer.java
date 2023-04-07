@@ -55,15 +55,22 @@ public class CanvasDrawer {
             }
         }
 
-        //Debug mode outputs
-        if (debugMode){
-            for (PolygonVisualizer polygon: polygons){
-                debugSegment(polygon);
-            }
-            for (int i = 0; i < polygons.size(); i++) {
-                drawVertex(i);
-            }
+        for (PolygonVisualizer polygon: polygons){
+            debugSegment(polygon);
         }
+        for (int i = 0; i < polygons.size(); i++) {
+            drawVertex(i);
+        }
+
+//        //Debug mode outputs
+//        if (debugMode){
+//            for (PolygonVisualizer polygon: polygons){
+//                debugSegment(polygon);
+//            }
+//            for (int i = 0; i < polygons.size(); i++) {
+//                drawVertex(i);
+//            }
+//        }
 
         //Print all Vertices for each polygon
         for (PolygonVisualizer polygon : polygons) {

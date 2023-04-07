@@ -106,7 +106,7 @@ public class Regular extends Mode {
         //Set humidity contrast colours to all land tiles
         humidity.setHumidityColors(allLand);
 
-        CityMesh city=new CityMesh(verticesInfoList,segmentInfoList);
+        CityMesh city=new CityMesh(centroidInfoList,neighbouringSegmentInfoList);
         city.setPaths();
     }
 

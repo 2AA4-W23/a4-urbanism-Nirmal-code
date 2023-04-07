@@ -109,7 +109,9 @@ public class TileSegment extends ExtractSegmentInfo implements TileProperties{
     }
 
     public Segment getSegment(){
-        if (observer!=null){
+        if (element.equals(SegmentElement.RIVER)){
+            averageColor=element.getColor();
+        }else if (observer!=null){
             element=observer.getTerrain();
             if (element.equals(SegmentElement.LAND)){
                 setAverageColor();
@@ -119,7 +121,7 @@ public class TileSegment extends ExtractSegmentInfo implements TileProperties{
         }else{
             setAverageColor();
         }
-        
+
         String colourCode = averageColor.getRed() + "," + averageColor.getGreen() + "," + averageColor.getBlue() + "," + averageColor.getAlpha();
         Property colorProp = Property.newBuilder().setKey("rgb_color").setValue(colourCode).build();
         Property thicknessProp = Property.newBuilder().setKey("thickness").setValue(thicknessDouble.toString()).build();
