@@ -7,12 +7,11 @@ import ca.mcmaster.cas.se2aa4.a4.urban.ShortestPath.DijkstraSP;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+import ca.mcmaster.cas.se2aa4.a3.island.IslandCommandLineReader;
+
 import java.util.Set;
 
 public class CityGenerator {
-
-    Random rand=new Random();
 
     IslandNode capitol;
     List<IslandNode> cities;
@@ -41,10 +40,10 @@ public class CityGenerator {
         int subject;
         IslandNode node;
         for (int i=0; i<num_elements;){
-            subject=rand.nextInt(0,all_nodes.size());
+            subject=IslandCommandLineReader.randomGenerator.getNextInteger(0,all_nodes.size());
             node=all_nodes.get(subject);
             if (node.getTerrain().equals(VertexElement.LAND)){
-                boolean big=rand.nextBoolean();
+                boolean big=IslandCommandLineReader.randomGenerator.getNextBoolean();
                 if (big){
                     node.setTerrain(VertexElement.BIG_CITY);
                 }else{
