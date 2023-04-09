@@ -1,4 +1,4 @@
-# Assignment A2: Mesh Generator
+# Assignment A2,3,4: Mesh, Island and City Generation
   - Mithun Paramathasan [paramatm@mcmaster.ca]
   - Nirmal Chaudhari [chaudn12@mcmaster.ca]
   - Sathurshan Arulmohan [arulmohs@mcmaster.ca]
@@ -82,7 +82,6 @@ java -jar island.jar -input (input.mesh) -output (output.mesh) --mode heatmap -s
 Example: `java -jar island.jar -i ../generator/regular.mesh -o desert.mesh --mode heatmap --shape irregular --altitude hills --biomes desert --lakes 2 --rivers 2 -soil dry --aquifers 2 -seed -2116125981790618405`
 
 
-
 `shape`: General shape of the island: {circle, rectangle, oval, irregular, random}.\
 `altitude` : The altitude behaviour of the island: {volcanic, cliff, hills, flat, random}.\
 `biomes`: General biome to use for the whole map: {arctic, tropical, temperate, desert}.\
@@ -91,6 +90,25 @@ Example: `java -jar island.jar -i ../generator/regular.mesh -o desert.mesh --mod
 `soil`: The soil profile to apply to the whole island: {dry, humid, wet}.\
 `aquifers`: Number of aquifers to generate on the island: (positive integer).\
 `seed`: Seed to use for all random variables: (long type)
+
+#### Urbanism
+
+```
+cd island
+java -jar island.jar -input (input.mesh) -output (output.mesh) --mode urban -shape {circle, rectangle, oval, irregular, random} -altitude {volcanic, cliff, hills, flat, random} -biomes {arctic, tropical, temperate, desert} [-lakes] [-rivers] -soil {dry, humid, wet} [-aquifers] [-seed] [-cities]
+```
+
+Example: `java -jar island.jar -i ../generator/sample.mesh -o sandbox.mesh --mode urban --shape irregular --altitude flat --biomes temperate --lakes 3 --rivers 15 -soil humid --aquifers 5 --cities 50`
+
+`shape`: General shape of the island: {circle, rectangle, oval, irregular, random}.\
+`altitude` : The altitude behaviour of the island: {volcanic, cliff, hills, flat, random}.\
+`biomes`: General biome to use for the whole map: {arctic, tropical, temperate, desert}.\
+`lakes`: Maximum number of lakes in the island: (positive integer).\
+`rivers`: Maximum number of rivers in the island: (positive integer).\
+`soil`: The soil profile to apply to the whole island: {dry, humid, wet}.\
+`aquifers`: Number of aquifers to generate on the island: (positive integer).\
+`seed`: Seed to use for all random variables: (long type).\
+`cities`: Maximum number of cities on the island: (positive integer)
 
 
 ##### Whittaker Diagrams
@@ -170,6 +188,23 @@ To see a examples of the mesh, run any one of the scripts below in the main dire
 ```sh Scripts/runTemperateHeatmap```
 
 ![My Image](images/heatmap.png)
+
+```sh Scripts/runCliffUrban```
+
+![My Image](images/urbanCliff.png)
+
+```sh Scripts/runFlatUrban```
+
+![My Image](images/urbanFlat.png)
+
+```sh Scripts/runVolcanicUrban```
+
+![My Image](images/urbanVolcanic.png)
+
+```sh Scripts/runCrowdedUrban```
+
+![My Image](images/urbanCrowded.png)
+
 
 
 ## How to contribute to the project
