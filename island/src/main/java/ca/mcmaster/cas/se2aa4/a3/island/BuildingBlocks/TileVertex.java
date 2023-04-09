@@ -112,6 +112,7 @@ public class TileVertex extends ExtractVertexInfo implements TileProperties{
     }
 
     private void updateValues(){
+        vertexElement=observer.getTerrain();
         if (!isVertexLand() & !isVertexWater()){
             averageColor=vertexElement.getColor();
             thicknessDouble=vertexElement.getSize();
@@ -126,7 +127,6 @@ public class TileVertex extends ExtractVertexInfo implements TileProperties{
         if (isRiver){
             averageColor=new Color(15,94,196,254);
         }else if (observer!=null){
-            vertexElement=observer.getTerrain();
             updateValues();
         }else{
             setAverageColor();
