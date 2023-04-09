@@ -8,13 +8,43 @@ import ca.mcmaster.cas.se2aa4.a3.island.GraphBuildingBlocks.SegmentObserver;
 import ca.mcmaster.cas.se2aa4.a3.island.GraphBuildingBlocks.VertexObserver;
 import ca.mcmaster.cas.se2aa4.a3.island.TilesTypes.VertexElement;
 import ca.mcmaster.cas.se2aa4.a4.urban.BuildingBlocks.Edge;
+import ca.mcmaster.cas.se2aa4.a4.urban.BuildingBlocks.Node;
+import ca.mcmaster.cas.se2aa4.a4.urban.GraphADT.UndirectedGraph;
 
 import java.util.*;
 
 public class GraphGenerator {
 
-    protected List<IslandNode> setGraphNodes(List<TileVertex> vertices){
-        List<IslandNode> all_nodes=new ArrayList<>();
+    private List<IslandNode> all_nodes;
+    private Map<Edge,IslandEdge> all_edges;
+
+    private UndirectedGraph graph;
+
+    public GraphGenerator(){
+        all_nodes=new ArrayList<>();
+        all_edges=new HashMap<>();
+    }
+
+    public void generateGraph(List<TileVertex> vertices, List<TileSegment> segments){
+        setGraphNodes(vertices);
+        setGraphEdges(segments);
+        graph=new UndirectedGraph(getNodes(), getEdges());
+    }
+
+    protected List<IslandNode> getIslandNodes(){
+        return this.all_nodes;
+    }
+
+    protected Map<Edge, IslandEdge> getIslandEdges(){
+        return this.all_edges;
+    }
+
+    protected UndirectedGraph getGraph(){
+        return this.graph;
+    }
+
+
+    private void setGraphNodes(List<TileVertex> vertices){
         int index=0;
         double total_weight;
         VertexElement element;
@@ -31,11 +61,9 @@ public class GraphGenerator {
             all_nodes.add(new_node);
             index+=1;
         }
-        return all_nodes;
     }
 
-    protected Map<Edge,IslandEdge> setGraphEdges(List<TileSegment> segments){
-        Map<Edge,IslandEdge> all_segments=new HashMap<>();
+    private void setGraphEdges(List<TileSegment> segments){
 
         for (TileSegment s: segments){
             TileVertex v1=s.getTileVertex1();
@@ -44,22 +72,32 @@ public class GraphGenerator {
             VertexObserver o1=v1.getObserver();
             VertexObserver o2=v2.getObserver();
 
-            IslandNode n1=o1.getNode();
-            IslandNode n2=o2.getNode();
-
-            IslandEdge new_edge=new IslandEdge(n1,n2,s.getLength(),s.getElement());
+            IslandEdge new_edge=new IslandEdge(o1.getNode(),o2.getNode(),s.getLength(),s.getElement());
 
             SegmentObserver new_observer=new SegmentObserver(new_edge);
             new_edge.attatch(new_observer);
             s.setObserver(new_observer);
 
-            all_segments.put(new_edge.getEdge(),new_edge);
-            all_segments.put(new_edge.getEdge2(),new_edge);
+            all_edges.put(new_edge.getEdge(),new_edge);
+            all_edges.put(new_edge.getEdge2(),new_edge);
 
         }
-        return all_segments;
     }
 
+    private Set<Node> getNodes(){
+        Set<Node> nodes=new HashSet<>();
+        for (IslandNode i: all_nodes){
+            nodes.add(i.getNode());
+        }
+        return nodes;
 
+    }
+    private Set<Edge> getEdges(){
+        Set<Edge> edges=new HashSet<>();
+        for (IslandEdge i: all_edges.values()){
+            edges.add(i.getEdge());
+        }
+        return edges;
+    }
 
 }

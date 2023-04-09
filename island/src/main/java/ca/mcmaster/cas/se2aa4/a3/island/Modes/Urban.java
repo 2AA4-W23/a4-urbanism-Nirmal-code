@@ -14,8 +14,8 @@ public class Urban extends Regular{
         super(inputMesh, outputMesh, shapeType, altitudeType, biome, maxLakes, maxRivers, soil, numAquifers);
         super.generate();
 
-        CityMesh city=new CityMesh(Math.min(num_cities, allLand.size()),centroidInfoList,neighbouringSegmentInfoList);
-        city.setPaths();
+        CityMesh city=new CityMesh();
+        city.generate(Math.min(num_cities, allLand.size()),centroidInfoList,neighbouringSegmentInfoList);
     }
 
 

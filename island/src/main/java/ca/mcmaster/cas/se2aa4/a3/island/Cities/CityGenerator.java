@@ -9,21 +9,18 @@ import java.util.ArrayList;
 import java.util.List;
 import ca.mcmaster.cas.se2aa4.a3.island.IslandCommandLineReader;
 
-import java.util.Set;
-
 public class CityGenerator {
 
-    IslandNode capitol;
-    List<IslandNode> cities;
-    List<IslandNode> all_nodes;
+    private IslandNode capitol;
+    private List<IslandNode> cities;
+    private List<IslandNode> possible_cities;
 
-    UndirectedGraph graph;
+    private UndirectedGraph graph;
 
-
-    public void generate(UndirectedGraph graph, List<IslandNode> nodes, int num_cities){
+    public void generate(UndirectedGraph graph, List<IslandNode> cities, int num_cities){
         this.cities=new ArrayList<>();
         this.graph=graph;
-        this.all_nodes=nodes;
+        this.possible_cities =cities;
         setCities(num_cities);
         setCapitol();
     }
@@ -40,8 +37,8 @@ public class CityGenerator {
         int subject;
         IslandNode node;
         for (int i=0; i<num_elements;){
-            subject=IslandCommandLineReader.randomGenerator.getNextInteger(0,all_nodes.size());
-            node=all_nodes.get(subject);
+            subject=IslandCommandLineReader.randomGenerator.getNextInteger(0, possible_cities.size());
+            node= possible_cities.get(subject);
             if (node.getTerrain().equals(VertexElement.LAND)){
                 boolean big=IslandCommandLineReader.randomGenerator.getNextBoolean();
                 if (big){
@@ -55,8 +52,6 @@ public class CityGenerator {
             }
         }
     }
-
-
 
     private IslandNode findCapitol(){
         DijkstraSP sp=new DijkstraSP();
