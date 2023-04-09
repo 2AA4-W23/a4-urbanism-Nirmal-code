@@ -23,12 +23,12 @@ public class EdgeTestCases {
         E=new Edge(N1,N2,5.0);
     }
 
-//    @Test
-//    public void testWeight(){
-//        double real_weight=Math.sqrt(Math.pow(5,2)+Math.pow(Math.abs(E.getN1().getWeight()-E.getN2().getWeight()),2));
-//
-//        assertTrue(Double.compare(E.getWeight(),real_weight)==0);
-//    }
+    @Test
+    public void testWeight(){
+        double real_weight=4.0+10.0+5.0;
+
+        assertTrue(Double.compare(E.getWeight(),real_weight)==0);
+    }
 
     @Test
     public void testFlip(){

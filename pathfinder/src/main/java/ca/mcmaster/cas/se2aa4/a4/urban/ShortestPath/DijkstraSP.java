@@ -30,8 +30,18 @@ public class DijkstraSP implements ShortestPath {
     }
 
     public void generate(GraphADT graph, Node s, Node e) {
-        this.start=s;
-        this.end=e;
+
+        if (graph.getNodes().contains(s) & graph.getNodes().contains(e)){
+            for (Node n: graph.getNodes()){
+                if (s.equals(n)){
+                    this.start=n;
+                }else if (n.equals(e)){
+                    this.end=n;
+                }
+            }
+        }else{
+            return;
+        }
 
         for (Node n: graph.getNodes()){
             all_sp.put(n, null);
@@ -40,9 +50,9 @@ public class DijkstraSP implements ShortestPath {
             cost.put(n, Double.MAX_VALUE);
         }
 
-        all_sp.put(s,s);
-        cost.put(s,0.0);
-        queue.add(s);
+        all_sp.put(start,start);
+        cost.put(start,0.0);
+        queue.add(start);
 
         while (!queue.isEmpty()){
             Node temp=queue.remove();
