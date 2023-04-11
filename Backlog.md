@@ -96,5 +96,19 @@ Pending (P), Started (S), Blocked (B), Done (D)
 | F83   | Output all the user’s input parameters   | Mithun     | 03/22/2023 | 03/22/2023 | D  |
 | F84   | User can enter the seed to use via -–seed via the command line    | Sathurshan | 03/12/2023 | 03/12/2023 | D   |
 | F85   | Generate same seed map     | Sathurshan | 03/12/2023 | 03/12/2023 | D   |
-| F86   | Goods for each tile depending on tile conditions  | Mithun     |  |  | P  |
+| F86   | Goods for each tile depending on tile conditions  | Mithun     |  |  | D  |
 | F87   | Islands have random shape option  | Sathurshan     | 03/13/2023 | 03/14/2023 | D  |
+| F88   | GraphADT has nodes. Node has associated name/id | Nirmal     | 03/29/2023 | 03/29/2023 | D  |
+| F89   | GraphADT has edges. Edge have two nodes as attributes. | Nirmal     | 03/29/2023 | 03/29/2023 | D  |
+| F90   | Edges have weight. Inputted through the constructor. | Nirmal     | 03/29/2023 | 03/29/2023 | D  |
+| F91   | GraphADT consists of set of Nodes and Edges. | Nirmal     | 03/29/2023 | 03/29/2023 | D  |
+| F92   | GraphADT can calculate shortest path between two nodes. | Nirmal     | 03/29/2023 | 03/29/2023 | D  |
+| F93   | GraphADT has two types, Directed and Undirected | Nirmal     | 04/02/2023 | 04/02/2023 | D  |
+| F94   | TileVertices can now be of type SmallCity, BigCity, Road, Land or Water | Nirmal     | 04/03/2023 | 04/03/2023 | D  |
+| F95   | Cities have different sizes, and colours | Nirmal     | 04/03/2023 | 04/03/2023 | D  |
+| F96   | Island has city mesh. Composed of undirected graph. | Nirmal     | 04/04/2023 | 04/04/2023 | D  |
+| F97   | CityMesh contains a random mix of big and small cities. | Nirmal     | 04/04/2023 | 04/04/2023 | D  |
+| F98   | CityMesh contains a Capitol. | Nirmal     | 04/04/2023 | 04/04/2023 | D  |
+| F99   | CityMesh has a path from all cities to the capitol. Centralized pattern | Nirmal     | 04/05/2023 | 04/05/2023 | D  |
+| F100   | CityMesh is more realistic. Avoids building roads on bodies of water. | Nirmal     | 04/07/2023 | 04/07/2023 | D  |
+| F101   | User can enter number of cities through command line. | Nirmal     | 04/08/2023 | 04/08/2023 | D  |
